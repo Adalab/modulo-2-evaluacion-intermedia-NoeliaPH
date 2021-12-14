@@ -2,10 +2,11 @@
 
 // 1. Variables
 
-const userOption = document.querySelector('.js_useroption');
-const playButton = document.querySelector('.js_play');
+const userSelect = document.querySelector('.js_useroption');
+const playButton = document.querySelector('.js_letplay');
 const letsPlay = document.querySelector('.js_letplay');
 const computerPlay = document.querySelector('.js_computerplay');
+const numberResult = getRandom(10);
 
 //2. Funciones
 
@@ -14,6 +15,7 @@ function getRandom(max) {
   }
 
   function play1(){
+      const userOption = userSelect.value;
       if (userOption === "stone"){
       console.log ("Usuario elige piedra");
       } else if (userOption === "paper"){
@@ -24,34 +26,43 @@ function getRandom(max) {
   
 
   function play2(){
-    if (userOption === 'stone') {
+    const userOption = userSelect.value;
+    const compOption = numberRandom();
+
+    if (userOption === 'stone' && compOption === 'stone') {
        letsPlay.innerHTML = "Empate";
-      } else if (userOption === 'paper') {
+      } else if (userOption === 'paper' && compOption === 'paper') {
         letsPlay.innerHTML = "Empate";
-      } else if (userOption === 'scissor') {
+      } else if (userOption === 'scissor' && compOption === 'scissor'){
         letsPlay.innerHTML = "Empate";
-      } else if (userOption === 'stone' && computerPlay === 'paper'){
+      } else if (userOption === 'stone' && compOption === 'paper'){
         letsPlay.innerHTML = "Gana";
-      } else if (userOption === 'stone' && computerPlay === 'scissor'){
+      } else if (userOption === 'stone' && compOption === 'scissor'){
         letsPlay.innerHTML = "Pierde";
-      } else if (userOption === 'papel' && computerPlay === 'stone'){
+      } else if (userOption === 'papel' && compOption === 'stone'){
         letsPlay.innerHTML = "Gana";
-      } else if (userOption === 'papel' && computerPlay === 'scissor'){
+      } else if (userOption === 'papel' && compOption === 'scissor'){
         letsPlay.innerHTML = "Pierde";
-      } else if (userOption === 'scissor' && computerPlay === 'stone'){
+      } else if (userOption === 'scissor' && compOption === 'stone'){
         letsPlay.innerHTML = "Pierde";
-      } else if (userOption === 'scissor' && computerPlay === 'paper')
+      } else if (userOption === 'scissor' && compOption === 'paper')
         letsPlay.innerHTML = "Gana";
 }
 
 
 function numberRandom(){
-    if (getRandom(10) <= 3){
+    const numberResult = getRandom(10);
+
+    if (numberResult <= 3){
         console.dir ("Movimiento computadora es piedra");
-    } else if (getRandom(10) <= 6){
+        return 'stone';
+    } else if (numberResult <= 6){
         console.dir ("Movimiento computadora es papel");
-    } else (getRandom(10)<=10)
+        return 'paper';
+    } else {
         console.dir ("Movimiento computadora es tijera");
+        return 'scissor';
+    }
     }
  
 
@@ -65,4 +76,4 @@ function numberRandom(){
 // 3. Listener
 
 
-playButton.addEventListener ('click', handleClick);
+computerPlay.addEventListener ('click', handleClick);

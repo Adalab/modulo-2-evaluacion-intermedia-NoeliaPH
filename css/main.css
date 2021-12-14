@@ -10,6 +10,6 @@
     justify-content: center;
     align-items: center;
     border: solid 3px red;
-    height: 100vh;
-    overflow-y:hidden; 
+    height: 100vh; 
+    line-height: 5;
 }
